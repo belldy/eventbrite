@@ -1,2 +1,40 @@
-<h1>List of events</h1>
-<p>Find me in app/views/event/index.html.erb</p>
+
+
+
+<!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Welcome to Belldybrite !</h1>
+          <p>Here is a list of events:</p>
+          <%= link_to "Create an event", new_event_path,:class => "btn btn-secondary"%>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <% @events.each do |i| %>
+            <div class="col-md-4">
+            <h2><%= i.title %></h2>
+            <p class="text-muted"><%= i.description %></p>
+            <%= link_to "MORE INFO", event_path(i.id),:class => "btn btn-secondary"%>
+          </div>
+          <% end %>
+        </div>
+
+        <hr>
+
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer class="container">
+      <p>&copy; Belldybrite 2019</p>
+    </footer>

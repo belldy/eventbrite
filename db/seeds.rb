@@ -10,22 +10,22 @@ require 'faker'
 User.destroy_all
 Event.destroy_all
 Attendance.destroy_all
-puts "Database destoyed"
+puts "Database destroyed"
 
 20.times do
 	user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Name.first_name+"@yopmail.com",
-		 encrypted_password: Faker::String.random(8..10), description: Faker::Superhero.suffix)
+		 password: Faker::String.random(8), description: Faker::Superhero.suffix)
 end
-puts "20 users created"
+puts "Users created"
 
-30.times do
-	event = Event.create!(start_date: Faker::Date.forward(2), duration: rand(1..120)*5, title: Faker::Superhero.prefix,
-		description: Faker::Lorem.sentences(7), price: rand(1..1000), location: Faker::Address.city, user_id: User.all.sample.id)
+15.times do
+	event = Event.create!(start_date: Faker::Date.forward(2), duration: 15, title: Faker::Superhero.prefix,
+		description: Faker::ChuckNorris.fact, price: rand(1...1000), location: Faker::Address.city)
 end
-puts "30 events created"
+puts "Events created"
 
-40.times do
-	rdv = Attendance.create!(stripe_costumer_id: Faker::String.random, user_id: User.all.sample.id, event_id: Event.all.sample.id)
-end
-puts "40 attendances created"
+# 40.times do
+# 	attendance = Attendance.create!(stripe_costumer_id: Faker::String.random)
+# end
+# puts "Attendances created"
 puts "Database created"
